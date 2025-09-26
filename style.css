@@ -1,52 +1,59 @@
 /* ==================================== */
-/* 1. VARIÁVEIS GLOBAIS */
+/* 1. VARIÁVEIS E RESET */
 /* ==================================== */
 :root {
-    --cor-principal: #007bff; /* Azul vibrante (pode ser o da escola) */
-    --cor-secundaria: #28a745; /* Verde para status 'Disponível' */
-    --cor-fundo: #f8f9fa; /* Cinza claro */
-    --cor-texto: #343a40; /* Cinza escuro */
+    --cor-principal: #007bff; /* Azul */
+    --cor-sucesso: #28a745;  /* Verde */
+    --cor-alerta: #ffc107;   /* Amarelo */
+    --cor-erro: #dc3545;     /* Vermelho */
+    --cor-fundo: #f8f9fa;
+    --cor-texto: #343a40;
     --sombra-caixa: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* ==================================== */
-/* 2. BASE RESET */
-/* ==================================== */
-body {
-    font-family: 'Arial', sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
+    line-height: 1.6;
 }
 
 /* ==================================== */
-/* 3. LAYOUT PRINCIPAL (HEADER E CONTEÚDO) */
+/* 2. HEADER E LAYOUT */
 /* ==================================== */
 header {
     background-color: var(--cor-principal);
     color: white;
-    padding: 15px 20px;
-    box-shadow: var(--sombra-caixa);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: 0.9em;
+    opacity: 0.8;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 20px auto;
+    max-width: 1100px;
+    margin: 30px auto;
     padding: 0 15px;
 }
 
 /* ==================================== */
-/* 4. CARTÕES DE INFORMAÇÃO (DASHBOARD) */
+/* 3. CARTÕES DE STATUS */
 /* ==================================== */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .card {
@@ -54,7 +61,7 @@ header {
     padding: 20px;
     border-radius: 8px;
     box-shadow: var(--sombra-caixa);
-    transition: transform 0.2s;
+    transition: transform 0.3s;
 }
 
 .card:hover {
@@ -63,103 +70,74 @@ header {
 
 .card h3 {
     margin-top: 0;
-    color: var(--cor-principal);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    color: var(--cor-texto);
 }
 
 .card .numero {
     font-size: 2.5rem;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 5px;
 }
+
+/* Estilos de cor para os cartões KPI */
+.status-disponivel { border-left: 5px solid var(--cor-sucesso); }
+.status-emprestado { border-left: 5px solid var(--cor-alerta); }
+.status-atrasado { border-left: 5px solid var(--cor-erro); }
+.status-total { border-left: 5px solid var(--cor-principal); }
+
 
 /* ==================================== */
-/* 5. ESTILOS ESPECÍFICOS DE STATUS */
+/* 4. TABELA DE LOGS */
 /* ==================================== */
-
-.status-disponivel {
-    background-color: var(--cor-secundaria);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-.status-emprestado {
-    background-color: #ffc107; /* Amarelo */
-    color: var(--cor-texto);
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-.status-atrasado {
-    background-color: #dc3545; /* Vermelho */
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-weight:
-        /* Estilos CSS Base para Início de Projeto */
-
-/* Reset Básico */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* Tipografia e Fundo */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-/* Componentes Principais */
-.cabecalho {
-    background-color: #333;
-    color: white;
-    padding: 1em 0;
-    text-align: center;
-}
-
-.navegacao a {
-    color: white;
-    text-decoration: none;
-    padding: 0 15px;
-}
-
-.conteudo {
-    width: 80%;
-    margin: 20px auto;
+.movimentacoes {
+    background-color: white;
     padding: 20px;
-    background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--sombra-caixa);
 }
 
-.rodape {
-    text-align: center;
-    padding: 10px;
-    margin-top: 30px;
-    border-top: 1px solid #ccc;
-    color: #666;
+.movimentacoes h3 {
+    color: var(--cor-principal);
+    margin-bottom: 15px;
 }
 
-/* Elementos de Formulário */
-input[type="text"], button {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+table {
     width: 100%;
-    box-sizing: border-box; /* Garante que o padding não aumente o width total */
+    border-collapse: collapse;
 }
 
-button {
-    background-color: #5cb85c; /* Verde para ação */
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+thead th {
+    background-color: var(--cor-principal);
     color: white;
-    cursor: pointer;
-    border: none;
+    font-weight: bold;
+}
+
+/* Estilos para badges de status na tabela */
+.badge {
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.badge.emprestimo {
+    background-color: var(--cor-alerta);
+    color: var(--cor-texto);
+}
+
+.badge.devolucao {
+    background-color: var(--cor-sucesso);
+    color: white;
+}
+
+.badge.atraso {
+    background-color: var(--cor-erro);
+    color: white;
 }
