@@ -2,12 +2,12 @@
 /* 1. VARIÁVEIS E RESET */
 /* ==================================== */
 :root {
-    --cor-principal: #007bff; /* Azul */
-    --cor-sucesso: #28a745;  /* Verde */
-    --cor-alerta: #ffc107;   /* Amarelo */
-    --cor-erro: #dc3545;     /* Vermelho */
-    --cor-fundo: #f8f9fa;
-    --cor-texto: #343a40;
+    --cor-principal: #FF00FF;/* Fuchsia / Magenta*/
+    --cor-sucesso: #EE82EE;  /* Violet */
+    --cor-alerta: #DA70D6;   /* Orchid */
+    --cor-erro: #DDA0DD;     /*Plum */
+    --cor-fundo:#C71585;
+    --cor-texto: #FF69B4;
     --sombra-caixa: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
