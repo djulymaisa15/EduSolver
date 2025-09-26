@@ -1,95 +1,165 @@
-/* -------------------------------------- */
-/* TÓPICO 2: CSS BÁSICO (Layout e Estilização) */
-/* -------------------------------------- */
+/* ==================================== */
+/* 1. VARIÁVEIS GLOBAIS */
+/* ==================================== */
+:root {
+    --cor-principal: #007bff; /* Azul vibrante (pode ser o da escola) */
+    --cor-secundaria: #28a745; /* Verde para status 'Disponível' */
+    --cor-fundo: #f8f9fa; /* Cinza claro */
+    --cor-texto: #343a40; /* Cinza escuro */
+    --sombra-caixa: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-/* Reset Básico e Fontes */
+/* ==================================== */
+/* 2. BASE RESET */
+/* ==================================== */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f9; /* Cor de fundo suave */
-    color: #333;
-    line-height: 1.6;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
 }
 
+/* ==================================== */
+/* 3. LAYOUT PRINCIPAL (HEADER E CONTEÚDO) */
+/* ==================================== */
 header {
-    background-color: #007bff; /* Azul primário da EduSolver */
+    background-color: var(--cor-principal);
     color: white;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    box-shadow: var(--sombra-caixa);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2em;
-}
-
-main {
+.container {
     max-width: 1200px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 0 15px;
 }
 
-section {
+/* ==================================== */
+/* 4. CARTÕES DE INFORMAÇÃO (DASHBOARD) */
+/* ==================================== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
     background-color: white;
-    padding: 25px;
-    margin-bottom: 20px;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--sombra-caixa);
+    transition: transform 0.2s;
 }
 
-h2 {
-    color: #007bff;
-    border-bottom: 2px solid #e9ecef;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.card:hover {
+    transform: translateY(-5px);
 }
 
-/* Estilos para Status do Hardware */
-.status-info {
-    display: flex;
-    justify-content: space-around;
-    padding: 15px;
-    background-color: #e9f7ff;
-    border-radius: 6px;
-    margin-bottom: 20px;
+.card h3 {
+    margin-top: 0;
+    color: var(--cor-principal);
+    font-size: 1.2rem;
 }
 
-/* Indicadores de Status */
-.online {
+.card .numero {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ==================================== */
+/* 5. ESTILOS ESPECÍFICOS DE STATUS */
+/* ==================================== */
+
+.status-disponivel {
+    background-color: var(--cor-secundaria);
     color: white;
-    background-color: #28a745; /* Verde para ONLINE */
-    padding: 4px 8px;
+    padding: 5px 10px;
     border-radius: 4px;
     font-weight: bold;
 }
 
-.offline {
-    color: white;
-    background-color: #dc3545; /* Vermelho para OFFLINE */
+.status-emprestado {
+    background-color: #ffc107; /* Amarelo */
+    color: var(--cor-texto);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
 }
 
-/* Botões de Comando */
-.controles-arduino {
+.status-atrasado {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight:
+        /* Estilos CSS Base para Início de Projeto */
+
+/* Reset Básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Tipografia e Fundo */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Componentes Principais */
+.cabecalho {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
     text-align: center;
 }
 
-.comando-btn {
-    padding: 10px 20px;
-    margin: 5px;
-    background-color: #ffc107; /* Amarelo para Ação */
-    color: #333;
-    border: none;
-    border-radius: 5px;
+.navegacao a {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.conteudo {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rodape {
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    color: #666;
+}
+
+/* Elementos de Formulário */
+input[type="text"], button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box; /* Garante que o padding não aumente o width total */
+}
+
+button {
+    background-color: #5cb85c; /* Verde para ação */
+    color: white;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
+    border: none;
 }
-
-.comando-btn:hover {
-    background-color: #e0a800;
-}
-
-/* Estilo da Tabela de Progresso */
-#tabela-prog
