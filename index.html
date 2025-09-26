@@ -3,73 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Controle - EduSolver Prototyping Hub</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>Dashboard de Recursos Didáticos - Edusover</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>EduSolver Prototyping Hub</h1>
-        <p>Monitoramento e Interação com Módulo Arduino</p>
+        <h1>Monitoramento de Recursos</h1>
+        <p>Edusover | Gerenciamento de Kits de Robótica</p>
     </header>
 
-    <main>
-        <section id="status-hardware">
-            <h2>Status do Módulo Arduino</h2>
-            <div class="status-info">
-                <p>Status da Conexão: <span id="statusConexao" class="online">ONLINE</span></p>
-                <p>Última Atualização: <span id="ultimaAtualizacao">--/--/--</span></p>
-            </div>
-            
-            <div class="controles-arduino">
-                <h3>Comandos de Teste</h3>
-                <button id="btnLigarLed" class="comando-btn">Ligar LED de Teste</button>
-                <button id="btnDesligarLed" class="comando-btn">Desligar LED de Teste</button>
-            </div>
-        </section>
+    <div class="container">
+        <h2>Status Geral do Laboratório</h2>
 
-        <section id="progresso-aluno">
-            <h2>Progresso do Aluno: [Nome do Aluno]</h2>
-            
-            <table id="tabela-progresso">
+        <div class="card-grid">
+            <div class="card status-total">
+                <h3>Total de Kits</h3>
+                <p class="numero" id="totalKits">0</p>
+            </div>
+            <div class="card status-disponivel">
+                <h3>Disponíveis Agora</h3>
+                <p class="numero" id="kitsDisponiveis">0</p>
+            </div>
+            <div class="card status-emprestado">
+                <h3>Em Uso (Emprestados)</h3>
+                <p class="numero" id="kitsEmprestados">0</p>
+            </div>
+            <div class="card status-atrasado">
+                <h3>Em Atraso</h3>
+                <p class="numero" id="kitsAtrasados">0</p>
+            </div>
+        </div>
+        
+        <section class="movimentacoes">
+            <h3>Movimentações Recentes (Arduino Log)</h3>
+            <table>
                 <thead>
                     <tr>
-                        <th>Tópico Front-End</th>
+                        <th>Recurso</th>
+                        <th>Usuário</th>
+                        <th>Ação</th>
                         <th>Status</th>
-                        <th>Ação de Automação</th>
+                        <th>Data/Hora</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1. HTML Semântico</td>
-                        <td class="completo">Concluído</td>
-                        <td>Estrutura enviada</td>
-                    </tr>
-                    <tr>
-                        <td>4. JavaScript Básico (DOM)</td>
-                        <td class="pendente">Pendente</td>
-                        <td>Aguardando interação</td>
-                    </tr>
+                <tbody id="logMovimentacoes">
                     </tbody>
             </table>
         </section>
 
-        <section id="enviar-dados">
-            <h2>Enviar Dados para o Banco</h2>
-            <form id="formulario-dados">
-                <label for="campoA">Código do Comando:</label>
-                <input type="text" id="campoA" name="codigoComando" required>
-                <button type="submit">Validar e Enviar</button>
-                <p id="mensagemErro" class="oculto"></p>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 EduSolver. Todos os direitos reservados.</p>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>
