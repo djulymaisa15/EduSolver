@@ -13,15 +13,15 @@ body {
 
 /* Variáveis de Cores */
 :root {
-    --primary-color: #007bff;
-    --success-color: #28a745;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --info-color: #17a2b8;
-    --secondary-color: #6c757d;
+    --primary-color: #8B008B;
+    --success-color: #EE82EE;
+    --warning-color: #DA70D6;
+    --danger-color: #DDA0DD;
+    --info-color: #FF69B4;
+    /* --secondary-color:#DB7093;/*
     --card-bg: #ffffff;
-    --sidebar-bg: #2c3e50;
-    --text-light: #ecf0f1;
+    --sidebar-bg:#FFB6C1; 
+    --text-light: #FFC0CB;
 }
 
 /* Layout Principal do Dashboard (GRID) */
