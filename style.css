@@ -1,100 +1,236 @@
-/* Estilos Gerais */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+/* Reset Básico */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
-    text-align: center;
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f9; /* Fundo suave */
+    color: #333;
 }
 
-.container {
-    max-width: 900px;
-    margin: 40px auto;
+/* Variáveis de Cores */
+:root {
+    --primary-color: #007bff;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    --secondary-color: #6c757d;
+    --card-bg: #ffffff;
+    --sidebar-bg: #2c3e50;
+    --text-light: #ecf0f1;
+}
+
+/* Layout Principal do Dashboard (GRID) */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Sidebar de 250px e o resto para o conteúdo */
+    min-height: 100vh;
+}
+
+/* Estilos do Sidebar */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    color: var(--text-light);
     padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--info-color); /* Destaque para o título */
+}
+
+.nav-item {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-item:hover {
+    background-color: #34495e;
+}
+
+.nav-item.active {
+    background-color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Indicador de Status de Conexão */
+.status-indicator {
+    margin-top: auto; /* Joga para o final do sidebar */
+    padding-top: 20px;
+    border-top: 1px solid #34495e;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.offline { background-color: var(--danger-color); }
+.connecting { background-color: var(--warning-color); }
+.online { background-color: var(--success-color); }
+
+/* Conteúdo Principal */
+.main-content {
+    padding: 40px;
+}
+
+.main-content h2 {
+    margin-bottom: 30px;
+    color: #444;
+}
+
+/* Cards (Widgets) */
+.card {
+    background-color: var(--card-bg);
+    padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
 }
 
-h2 {
-    color: #007bff;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
+.card:hover {
+    transform: translateY(-3px);
 }
 
-/* Estilos do Formulário */
-#form-adicionar input[type="text"],
-#form-adicionar input[type="number"] {
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* Cards de KPIs (Key Performance Indicators) (GRID) */
+.kpi-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+    gap: 20px;
+    margin-bottom: 40px;
 }
 
-#form-adicionar button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
+.kpi-card h3 {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
 }
 
-#form-adicionar button:hover {
-    background-color: #218838;
+.kpi-value {
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
-/* Estilos da Tabela */
-#tabela-inventario {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.kpi-description {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 5px;
 }
 
-#tabela-inventario th, #tabela-inventario td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+/* Cores de Destaque */
+.kpi-value.warning { color: var(--warning-color); }
+.kpi-value.info { color: var(--info-color); }
+.kpi-value.success { color: var(--success-color); }
+.kpi-value.secondary { color: var(--secondary-color); }
+
+/* Seção de Gráficos e Log (GRID) */
+.charts-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Gráfico maior à esquerda, Log/Controle à direita */
+    gap: 20px;
 }
 
-#tabela-inventario th {
-    background-color: #007bff;
-    color: white;
+.chart-card.wide {
+    grid-column: 1 / 2;
+    min-height: 400px;
 }
 
-#tabela-inventario tr:hover {
-    background-color: #f1f1f1;
+/* Log de Eventos */
+.log-card {
+    height: 100%; /* Ocupa a altura da linha */
+    overflow-y: auto;
+    max-height: 400px;
 }
 
-.btn-remover {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.btn-remover:hover {
-    background-color: #c82333;
-}
-
-/* Busca */
-#campo-busca {
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
+.log-card h3 {
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+}
+
+#event-log {
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+#event-log li {
+    padding: 5px 0;
+    border-bottom: 1px dotted #eee;
+}
+
+/* Controle Digital */
+.control-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.control-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.control-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividade (Para telas menores) */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        grid-template-columns: 1fr; /* Uma coluna só */
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .sidebar h1 { display: none; }
+    .sidebar nav { display: flex; gap: 10px; }
+    .status-indicator { margin-top: 0; padding-top: 0; border-top: none; }
+
+    .kpi-cards {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para mobile/tablet */
+    }
+
+    .charts-section {
+        grid-template-columns: 1fr; /* Uma coluna para gráficos e log */
+    }
+
+    .chart-card.wide {
+        grid-column: unset;
+    }
 }
