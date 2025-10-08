@@ -3,49 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoramento de Kits de Robótica</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Dashboard de Monitoramento Robótico</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h1>🤖 RoboMonitor</h1>
+            <nav>
+                <a href="#" class="nav-item active">Visão Geral</a>
+                <a href="#" class="nav-item">Sensores</a>
+                <a href="#" class="nav-item">Motores</a>
+                <a href="#" class="nav-item">Log de Eventos</a>
+            </nav>
+            <div class="status-indicator">
+                <span id="conn-status" class="status-circle offline"></span>
+                Conexão: <strong id="conn-text">Desconectado</strong>
+            </div>
+        </aside>
 
-    <header>
-        <h1>Inventário de Kits de Robótica</h1>
-        <p>Controle de Componentes Eletrônicos</p>
-    </header>
+        <main class="main-content">
+            <h2>Monitoramento em Tempo Real do Kit Robótico</h2>
 
-    <div class="container">
-        
-        <section id="adicionar-recurso">
-            <h2>Adicionar Novo Componente</h2>
-            <form id="form-adicionar">
-                <input type="text" id="nome-item" placeholder="Nome do Componente (Ex: Arduino Uno)" required>
-                <input type="number" id="quantidade" placeholder="Quantidade" min="1" required>
-                <input type="text" id="localizacao" placeholder="Localização (Ex: Caixa A)" required>
-                <button type="submit">Adicionar ao Inventário</button>
-            </form>
-        </section>
+            <div class="kpi-cards">
+                <div class="card kpi-card">
+                    <h3>Bateria (V)</h3>
+                    <p id="kpi-bateria" class="kpi-value warning">0.0 V</p>
+                    <p class="kpi-description">Nível de energia atual</p>
+                </div>
+                <div class="card kpi-card">
+                    <h3>Temperatura (°C)</h3>
+                    <p id="kpi-temperatura" class="kpi-value info">0 °C</p>
+                    <p class="kpi-description">Temperatura do processador</p>
+                </div>
+                <div class="card kpi-card">
+                    <h3>Distância (cm)</h3>
+                    <p id="kpi-distancia" class="kpi-value success">--- cm</p>
+                    <p class="kpi-description">Sensor ultrassônico</p>
+                </div>
+                <div class="card kpi-card">
+                    <h3>Status Motor</h3>
+                    <p id="kpi-motor" class="kpi-value secondary">Parado</p>
+                    <p class="kpi-description">Velocidade e direção</p>
+                </div>
+            </div>
 
-        <hr>
+            <div class="charts-section">
+                <div class="card chart-card wide">
+                    <h3>Histórico de Recursos</h3>
+                    <canvas id="resourceChart"></canvas>
+                </div>
 
-        <section id="lista-recursos">
-            <h2>Inventário Atual</h2>
-            
-            <input type="text" id="campo-busca" placeholder="Buscar por nome ou localização...">
+                <div class="card log-card">
+                    <h3>Log de Eventos Recentes</h3>
+                    <ul id="event-log">
+                        <li>[10:00:00] Inicializando sistema...</li>
+                    </ul>
+                </div>
 
-            <table id="tabela-inventario">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Quantidade</th>
-                        <th>Localização</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    </tbody>
-            </table>
-        </section>
-
+                <div class="card control-card">
+                    <h3>Controle Digital</h3>
+                    <p>LED Status: <strong id="led-status">OFF</strong></p>
+                    <button id="toggle-led" class="control-button">Ligar/Desligar LED</button>
+                    <p>Modo: <strong id="mode-status">Manual</strong></p>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>
