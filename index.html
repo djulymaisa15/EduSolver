@@ -14,6 +14,7 @@
 
     <div class="dashboard-container">
 
+        <!-- Sidebar -->
         <aside class="sidebar">
             <h1>🤖 RoboMonitor</h1>
             <nav>
@@ -27,9 +28,11 @@
             </div>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content">
             <h2>Monitoramento em Tempo Real do Kit Robótico</h2>
 
+            <!-- Visão Geral -->
             <div id="visao-geral" class="kpi-cards">
                 <div class="card kpi-card">
                     <h3>Bateria (V)</h3>
@@ -53,6 +56,7 @@
                 </div>
             </div>
 
+            <!-- Sensores -->
             <div id="sensores" class="images-section">
                 <h3>Imagens do Sistema</h3>
                 <div class="image-card">
@@ -69,12 +73,14 @@
                 </div>
             </div>
 
+            <!-- Histórico de Recursos -->
             <div id="motores" class="charts-section">
                 <div class="card chart-card wide">
                     <h3>Histórico de Recursos</h3>
                     <canvas id="resourceChart"></canvas>
                 </div>
 
+                <!-- Log de Eventos -->
                 <div id="log-eventos" class="card log-card">
                     <h3>Log de Eventos Recentes</h3>
                     <ul id="event-log">
@@ -82,6 +88,7 @@
                     </ul>
                 </div>
 
+                <!-- Controle -->
                 <div class="card control-card">
                     <h3>Controle Digital</h3>
                     <p>LED Status: <strong id="led-status">OFF</strong></p>
@@ -95,47 +102,41 @@
     </div>
 
     <script>
-        // JavaScript para controle do botão "Ligar/Desligar LED" e adicionar no log de eventos
         document.getElementById('toggle-led').addEventListener('click', function() {
             let ledStatus = document.getElementById('led-status');
             let eventLog = document.getElementById('event-log');
-
-            // Obtém o horário atual
             let currentTime = new Date().toLocaleTimeString();
 
-            // Alterna o estado do LED
             if (ledStatus.textContent === 'OFF') {
                 ledStatus.textContent = 'ON';
-                // Adiciona evento ao log
                 const logEntry = document.createElement('li');
                 logEntry.textContent = `[${currentTime}] LED ligado.`;
                 eventLog.appendChild(logEntry);
             } else {
                 ledStatus.textContent = 'OFF';
-                // Adiciona evento ao log
                 const logEntry = document.createElement('li');
                 logEntry.textContent = `[${currentTime}] LED desligado.`;
                 eventLog.appendChild(logEntry);
             }
         });
 
-        // Exemplo de gráfico com Chart.js
+        // Gráfico de histórico de recursos
         const ctx = document.getElementById('resourceChart').getContext('2d');
         const resourceChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['10:00', '10:10', '10:20', '10:30', '10:40'],  // Exemplo de horários
+                labels: ['10:00', '10:10', '10:20', '10:30', '10:40'],
                 datasets: [
                     {
                         label: 'Temperatura (°C)',
-                        data: [28, 29, 30, 28, 27],  // Exemplo de dados de temperatura
+                        data: [28, 29, 30, 28, 27],
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1,
                         fill: false
                     },
                     {
                         label: 'Umidade (%)',
-                        data: [55, 57, 58, 60, 63],  // Exemplo de dados de umidade
+                        data: [55, 57, 58, 60, 63],
                         borderColor: 'rgba(153, 102, 255, 1)',
                         borderWidth: 1,
                         fill: false
