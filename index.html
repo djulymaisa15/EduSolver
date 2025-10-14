@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -103,19 +102,46 @@
             let ledStatus = document.getElementById('led-status');
             let eventLog = document.getElementById('event-log');
 
+            // Obtém o horário atual
+            let currentTime = new Date().toLocaleTimeString();
+
             // Alterna o estado do LED
             if (ledStatus.textContent === 'OFF') {
                 ledStatus.textContent = 'ON';
                 // Adiciona evento ao log
                 const logEntry = document.createElement('li');
-                logEntry.textContent = '[26:46:06] LED ligado.';
+                logEntry.textContent = `[${currentTime}] LED ligado.`;
                 eventLog.appendChild(logEntry);
             } else {
                 ledStatus.textContent = 'OFF';
                 // Adiciona evento ao log
                 const logEntry = document.createElement('li');
-                logEntry.textContent = '[26:46:06] LED desligado.';
+                logEntry.textContent = `[${currentTime}] LED desligado.`;
                 eventLog.appendChild(logEntry);
+            }
+        });
+
+        // Exemplo de gráfico com Chart.js
+        const ctx = document.getElementById('resourceChart').getContext('2d');
+        const resourceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['10:00', '10:10', '10:20', '10:30', '10:40'],  // Exemplo de horários
+                datasets: [{
+                    label: 'Temperatura (°C)',
+                    data: [28, 29, 30, 28, 27],  // Exemplo de dados
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
             }
         });
     </script>
