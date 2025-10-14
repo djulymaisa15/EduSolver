@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Monitoramento Robótica do cólegio são cristóvão</title>
+    <title>Dashboard de Monitoramento Robótica do Colégio São Cristóvão</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
+
     <div class="dashboard-container">
+
         <aside class="sidebar">
             <h1>🤖 RoboMonitor</h1>
             <nav>
@@ -50,11 +56,27 @@
                 </div>
             </div>
 
+            <!-- Inserindo as imagens -->
+            <div class="images-section">
+                <h3>Imagens do Sistema</h3>
+                <div class="image-card">
+                    <h4>Log de Eventos</h4>
+                    <img src="log.jpn" alt="Log de Eventos" class="image-item">
+                </div>
+                <div class="image-card">
+                    <h4>Motores</h4>
+                    <img src="motores.webp" alt="Motores" class="image-item">
+                </div>
+                <div class="image-card">
+                    <h4>Sensor</h4>
+                    <img src="sensor.jpg" alt="Sensor" class="image-item">
+                </div>
+            </div>
+
             <div class="charts-section">
                 <div class="card chart-card wide">
                     <h3>Histórico de Recursos</h3> 
-
- <canvas id="resourceChart"></canvas>
+                    <canvas id="resourceChart"></canvas>
                 </div>
 
                 <div class="card log-card">
@@ -71,9 +93,13 @@
                     <p>Modo: <strong id="mode-status">Manual</strong></p>
                 </div>
             </div>
+
         </main>
+
     </div>
 
     <script src="script.js"></script>
+
 </body>
+
 </html>
