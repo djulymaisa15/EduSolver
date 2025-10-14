@@ -17,7 +17,6 @@
         <aside class="sidebar">
             <h1>🤖 RoboMonitor</h1>
             <nav>
-                <!-- Links de navegação com âncoras para seções específicas -->
                 <a href="#visao-geral" class="nav-item active">Visão Geral</a>
                 <a href="#sensores" class="nav-item">Sensores</a>
                 <a href="#motores" class="nav-item">Motores</a>
@@ -41,7 +40,7 @@
                 <div class="card kpi-card">
                     <h3>Temperatura (°C)</h3>
                     <p id="kpi-temperatura" class="kpi-value info">28 °C</p>
-                    <p class="kpi-description">Temperatura do processador</p>
+                    <p class="kpi-description">Temperatura da sala</p>
                 </div>
                 <div class="card kpi-card">
                     <h3>Distância (cm)</h3>
@@ -127,13 +126,22 @@
             type: 'line',
             data: {
                 labels: ['10:00', '10:10', '10:20', '10:30', '10:40'],  // Exemplo de horários
-                datasets: [{
-                    label: 'Temperatura (°C)',
-                    data: [28, 29, 30, 28, 27],  // Exemplo de dados
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1,
-                    fill: false
-                }]
+                datasets: [
+                    {
+                        label: 'Temperatura (°C)',
+                        data: [28, 29, 30, 28, 27],  // Exemplo de dados de temperatura
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Umidade (%)',
+                        data: [55, 57, 58, 60, 63],  // Exemplo de dados de umidade
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }
+                ]
             },
             options: {
                 responsive: true,
@@ -142,6 +150,20 @@
                         position: 'top',
                     },
                 },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tempo'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Valor'
+                        }
+                    }
+                }
             }
         });
     </script>
